@@ -3,11 +3,13 @@ for(i=0;i<document.querySelectorAll('button').length;i++)
 document.querySelectorAll('button')[i].addEventListener("click",function() {
   var btn = this.innerHTML;
   keypressed(btn);
+  keyAnimation(btn);
 });
 }
 
 document.addEventListener("keypress",function () {
   keypressed(event.key);
+  keyAnimation(event.key);
 });
 
 
@@ -43,4 +45,12 @@ function keypressed(key) {
       audio.play();
       break;
   }
+}
+
+function keyAnimation(btnKey) {
+  var activeButton = document.querySelector("."+btnKey);
+  activeButton.classList.add('pressed');
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  },150);
 }
